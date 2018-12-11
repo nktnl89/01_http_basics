@@ -46,7 +46,7 @@ public class GeolocationService implements GeolocationServiceInterface {
         try {
             response = okHttpClient.newCall(request).execute();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
         return response;
     }
@@ -60,7 +60,7 @@ public class GeolocationService implements GeolocationServiceInterface {
                 return matcher.group().replaceAll("csrfToken\":\"", "");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
         return null;
     }
@@ -87,7 +87,7 @@ public class GeolocationService implements GeolocationServiceInterface {
         try {
             return okHttpClient.newCall(request).execute();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
 
         return null;
@@ -103,7 +103,7 @@ public class GeolocationService implements GeolocationServiceInterface {
                 LOGGER.info(element.getAsJsonObject().get("coordinates").toString());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 }
